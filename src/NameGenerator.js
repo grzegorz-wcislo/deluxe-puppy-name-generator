@@ -20,13 +20,13 @@ const generateNofN = async ({ letter }) => {
   const potentialFirst = extractWords(filterNouns(firstWords));
   const first = randomElement(potentialFirst);
 
-  if (!first) throw new Error("Could not find name");
+  if (!first) throw new Error("Could not generate names");
 
   const secondWords = await getRelated(first);
   const potentialSecond = extractWords(filterNouns(secondWords));
   const second = randomElement(potentialSecond);
 
-  if (!second) throw new Error("Could not find name");
+  if (!second) throw new Error("Could not generate names");
 
   return `${capitalize(first)} of ${capitalize(second)}`;
 };
@@ -36,13 +36,13 @@ const generateAdjNoun = async ({ letter }, onSuccess, onFailure) => {
   const potentialFirst = extractWords(filterAdjectives(firstWords));
   const first = randomElement(potentialFirst);
 
-  if (!first) throw new Error("Could not find name");
+  if (!first) throw new Error("Could not generate names");
 
   const secondWords = await getMatchingNoun(first);
   const potentialSecond = extractWords(filterNouns(secondWords));
   const second = randomElement(potentialSecond);
 
-  if (!second) throw new Error("Could not find name");
+  if (!second) throw new Error("Could not generate names");
 
   return `${capitalize(first)} of ${capitalize(second)}`;
 };
@@ -52,13 +52,13 @@ const generateVerbNoun = async ({ letter }, onSuccess, onFailure) => {
   const potentialFirst = extractWords(filterVerbs(firstWords));
   const first = randomElement(potentialFirst);
 
-  if (!first) throw new Error("Could not find name");
+  if (!first) throw new Error("Could not generate names");
 
   const secondWords = await getRelated(first);
   const potentialSecond = extractWords(filterNouns(secondWords));
   const second = randomElement(potentialSecond);
 
-  if (!second) throw new Error("Could not find name");
+  if (!second) throw new Error("Could not generate names");
 
   return capitalize(first) + " " + capitalize(second);
 };
@@ -68,7 +68,7 @@ const generateNoun = async ({ letter }, onSuccess, onFailure) => {
   const potentialFirst = extractWords(filterNouns(firstWords));
   const first = randomElement(potentialFirst);
 
-  if (!first) throw new Error("Could not find name");
+  if (!first) throw new Error("Could not generate names");
   return capitalize(first);
 };
 

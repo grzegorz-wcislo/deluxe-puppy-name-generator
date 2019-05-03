@@ -24,8 +24,8 @@ export default () => {
 
   return (
     <>
-      <Error {...{ error }} />
       <Form submit={generateNames} disabled={loading} />
+      <Error {...{ error }} />
       <Puppies {...{ names }} />
     </>
   );
@@ -35,7 +35,7 @@ const Error = ({ error }) => {
   if (error) {
     return (
       <div className="error">
-        <p>{error.message}</p>
+        <p>{error.message}, please try again</p>
       </div>
     );
   } else return null;
@@ -50,13 +50,15 @@ const Puppy = ({ name, age }) => {
 };
 
 const Puppies = ({ names }) => {
-  return names ? (
-    <ul className="puppies">
-      {names.map(name => (
-        <Puppy {...{ name }} />
-      ))}
-    </ul>
-  ) : null;
+  if (names) {
+    return (
+      <ul className="puppies">
+        {names.map(name => (
+          <Puppy {...{ name }} />
+        ))}
+      </ul>
+    );
+  } else return null;
 };
 
 const Form = ({ submit, disabled }) => {
@@ -70,6 +72,7 @@ const Form = ({ submit, disabled }) => {
 
   return (
     <form onSubmit={onSubmit}>
+      <label htmlFor="letters">Name's first letter:</label>
       <select name="letters" onChange={e => setLetter(e.target.value)}>
         {letters.map(l => (
           <option key={l} value={l}>
@@ -77,7 +80,9 @@ const Form = ({ submit, disabled }) => {
           </option>
         ))}
       </select>
-      <input type="submit" {...{ disabled }} value="Generate" />
+      <button type="submit" {...{ disabled }}>
+        Generate
+      </button>
     </form>
   );
 };

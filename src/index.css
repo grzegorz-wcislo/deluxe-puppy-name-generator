@@ -1,50 +1,148 @@
+@import url("https://fonts.googleapis.com/css?family=Great+Vibes");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300");
+
+body,
+button,
+select {
+  font-family: "Open Sans";
+}
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Joker","Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: MistyRose
+  background: mistyrose;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+#root {
+  height: 100%;
 }
 
-header{
-	font-size: 200%;
-	width: 100%;
-	text-align: center;
-	
+.App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-
-form{
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: strech;
-	align-content: space-between;
-}
-select{
-	margin: 10px;
-	width:auto;
-	height: auto;
-	padding: auto;
-	font-size: 150%;
-}
-input{
-	margin: 10px;
-	width:auto;
-	height: auto;
-	padding: auto;
-	font-size: 150%;
-	background: black;
-	color: pink;
+header h1 {
+  font-family: "Great Vibes";
+  font-size: 6rem;
+  text-align: center;
+  padding: 2rem 16px;
 }
 
-	
+main {
+  flex: 1 0 auto;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.error {
+  background-color: red;
+  padding: 16px;
+  margin: 16px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+form {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  display: inline-block;
+  margin: 1rem 0 0 0;
+  padding: 16px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+select {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 0 1rem 0;
+  text-align: center;
+  border-radius: 8px;
+  border-width: 0px;
+  color: black;
+  background-color: pink;
+  font-size: 2rem;
+  appearance: none;
+  text-transform: uppercase;
+  text-align-last: center;
+  text-align: justify;
+}
+
+select:hover {
+  background-color: deeppink;
+  cursor: pointer;
+}
+
+button {
+  margin: 1rem 0;
+  font-size: 2rem;
+  padding: 8px 16px;
+  border: none;
+  color: black;
+  background-color: pink;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: deeppink;
+  cursor: pointer;
+}
+
+body select option {
+  font-size: 12px;
+  padding: 0 4px;
+  background-color: pink;
+}
+
+.puppies {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 80%;
+  margin: auto;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.puppy {
+  flex-basis: auto;
+  padding: 16px 24px;
+  border-radius: 8px;
+  background-color: pink;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 16px;
+}
+
+.puppy:hover {
+  background-color: deeppink;
+}
+
+footer {
+  flex-shrink: 0;
+  margin-top: 3rem;
+}
+
+footer p {
+  padding: 32px 16px;
+  background-color: pink;
+  text-align: center;
+}

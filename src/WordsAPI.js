@@ -13,12 +13,12 @@ const cachedAxios = axios.create({
 
 export const getWords = params => {
   params["md"] = "p";
-  params["max"] = 1000;
 
   return cachedAxios.get(URL, { params }).then(resp => resp.data);
 };
 
-export const getStartingWith = prefix => getWords({ sp: prefix + "*" });
+export const getStartingWith = prefix =>
+  getWords({ sp: prefix + "*", max: 1000 });
 
 export const getRelated = word => getWords({ rel_bga: word });
 
