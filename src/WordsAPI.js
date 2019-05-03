@@ -1,10 +1,19 @@
 import axios from 'axios';
+import { setupCache } from 'axios-cache-adapter';
 
 const URL = "http://api.datamuse.com/words/";
 
+const cache = setupCache({
+  maxAge: 15 * 60 * 1000
+});
+
+const cachedAxios = axios.create({
+  adapter: cache.adapter
+});
+
 export const getWords = (params) => {
   params["md"] = "p";
-  return axios.get(URL, {params})
+  return cachedAxios.get(URL, {params})
     .then(resp => resp.data);
 };
 
