@@ -1,7 +1,13 @@
-import {getWords} from './WordsAPI';
+import {getStartingWith} from './WordsAPI';
+
+const extractWords = words => words.map(({word}) => word);
+
+const filterNouns = words => words.filter(({tags}) => tags && tags.includes("n"));
+
+const filterAdjectives = words => words.filter(({tags}) => tags && tags.includes("adj"));
 
 export const generate = ({letter}, onSuccess, onFailure) => {
-    getWords({sp: letter + "*"})
-    .then(resp => onSuccess(resp.map(({word}) => word)))
+    getStartingWith(letter)
+    .then(resp => onSuccess(extractWords(filterAdjectives(resp))))
     .catch(err => onFailure(err));
 };

@@ -8,10 +8,4 @@ export const getWords = (params) => {
     .then(resp => resp.data);
 };
 
-export const getNouns = (params) => {
-  getWords(params).then(words => words.filter(({tags}) => tags.includes("n")));
-};
-
-export const getAdjectives = (params) => {
-  getWords(params).then(words => words.filter(({tags}) => tags.includes("adj")));
-};
+export const getStartingWith = prefix => getWords({sp: prefix + "*"});
