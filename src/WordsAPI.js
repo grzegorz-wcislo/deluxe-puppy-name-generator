@@ -9,3 +9,7 @@ export const getWords = (params) => {
 };
 
 export const getStartingWith = prefix => getWords({sp: prefix + "*"});
+
+export const getRelated = word => getWords({rel_bga: word});
+
+export const getMatchingNoun = word => getWords({rel_jja: word});

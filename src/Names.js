@@ -7,15 +7,17 @@ export default () => {
   const [loading, setLoading] = useState(false);
 
   const generateNames = (filters) => {
-    console.log("Generating...");
     setLoading(true);
-    generate(filters, (names) => {
-      setNames(names);
-      setLoading(false);
-    }, (msg) => {
-      setError(msg);
-      setLoading(false);
-    });
+    generate(
+      filters,
+      (names) => {
+        setNames(names);
+        setError(null);
+        setLoading(false);
+      }, (msg) => {
+        setError(msg);
+        setLoading(false);
+      });
   };
 
   return (
@@ -33,12 +35,6 @@ const Error = ({msg}) => (
       <p>{msg}</p>
     </div>
   : null
-);
-
-const Loading = () => (
-  <div className="loading">
-    <p>Loading...</p>
-  </div>
 );
 
 const Puppy = ({name, age}) => {
@@ -63,7 +59,6 @@ const Form = ({submit, disabled}) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(`Wybraliśmy literkę ${letter}`);
     submit({letter});
   };
 
@@ -72,7 +67,7 @@ const Form = ({submit, disabled}) => {
       <select name="letters" onChange={e => setLetter(e.target.value)}>
         {letters.map(l => <option key={l} value={l}>{l}</option>)}
       </select>
-	  <input type="submit" {...{disabled}}/>
+	  <input type="submit" {...{disabled}} value="Generate"/>
     </form>
   );
 };
