@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {getWords, getNouns, getAdjectives} from './WordsAPI';
+import {generate} from './NameGenerator';
 
 const Puppy = ({name, age}) => {
   return (
@@ -23,6 +25,8 @@ const Form = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(`Wybraliśmy literkę ${letter}`);
+
+    generate({letter}, console.table, console.log);
   };
 
   return (
