@@ -72,18 +72,40 @@ const generateNoun = async ({ letter }, onSuccess, onFailure) => {
   return capitalize(first);
 };
 
-const generateRandom = ({ letter }) => {
-  switch (Math.floor(Math.random() * 4)) {
-    case 0:
-      return generateNofN({ letter });
-    case 1:
-      return generateAdjNoun({ letter });
-    case 2:
-      return generateVerbNoun({ letter });
-    case 3:
-    default:
-      return generateNoun({ letter });
+const generateRandom = async ({ letter }) => {
+  let retry = 3;
+  let result;
+
+  const getResult = async () => {
+    switch (Math.floor(Math.random() * 4)) {
+      case 0:
+        result = await generateNofN({ letter });
+        break;
+      case 1:
+        result = await generateAdjNoun({ letter });
+        break;
+      case 2:
+        result = await generateVerbNoun({ letter });
+        break;
+      case 3:
+      default:
+        result = await generateNoun({ letter });
+        break;
+    }
+  };
+
+  while (retry && !result) {
+    try {
+      await getResult();
+    } catch (e) {
+      if (retry == 1) {
+        throw e;
+      }
+      retry -= 1;
+    }
   }
+
+  return result;
 };
 
 export const generate = ({ letter, count = 10 }, onSuccess, onFailure) => {
