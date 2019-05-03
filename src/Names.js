@@ -6,7 +6,7 @@ export default () => {
   const [names, setNames] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const generateNames = (filters) => {
+  const generateNames = filters => {
     setLoading(true);
     generate(
       filters,
@@ -22,20 +22,22 @@ export default () => {
 
   return (
     <>
-      <Error msg={error}/>
-      <Form submit={generateNames} disabled={loading}/>
+      <Error {...{error}} />
+      <Form submit={generateNames} disabled={loading} />
       <Puppies {...{names}} />
     </>
   );
 };
 
-const Error = ({msg}) => (
-  msg ? 
+const Error = ({error}) => {
+  if (error) {
+    return (
     <div className="error">
-      <p>{msg}</p>
+      <p>{error.message}</p>
     </div>
-  : null
-);
+    );
+  } else return null;
+};
 
 const Puppy = ({name, age}) => {
   return (
