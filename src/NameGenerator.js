@@ -98,7 +98,7 @@ const generateRandom = async ({ letter }) => {
     try {
       await getResult();
     } catch (e) {
-      if (retry == 1) {
+      if (retry === 1) {
         throw e;
       }
       retry -= 1;
